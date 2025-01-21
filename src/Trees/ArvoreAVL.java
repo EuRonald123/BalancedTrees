@@ -1,3 +1,6 @@
+package Trees;
+import Interface.BalancedTree;
+
 public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 	private NoAVL<T> root;
 	

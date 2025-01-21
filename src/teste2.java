@@ -1,8 +1,11 @@
+import Trees.ArvoreAVL;
+
+
 public class teste2 {
 	public static void main(String[] args) {
 		ArvoreAVL<Integer> avlTree = new ArvoreAVL<>();
 		
-		int []vet= {13,14,24,23,22,17,18,19};
+		int []vet= {46,27,20,15,10,90,98,95};
 		for(int i=0;i<vet.length;i++) {
 			avlTree.insert(vet[i]);
 		}
@@ -14,7 +17,7 @@ public class teste2 {
         avlTree.printPosOrder();
 
 		
-		boolean removido = avlTree.remove(19);
+		boolean removido = avlTree.remove(10);
 		if(removido){
 			System.out.println("\n***Remocao foi um sucesso***\n");
 		}else{
@@ -30,7 +33,7 @@ public class teste2 {
 
 
 		System.out.println("\n*****************************\n");
-		if(avlTree.find(19)){
+		if(avlTree.find(90)){
 			System.out.println("\n***TRUE***");
 		}else{
 			System.out.println("***FALSE***");
