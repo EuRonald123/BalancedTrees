@@ -1,4 +1,4 @@
-package Trees;
+package TreeAVL;
 import Interface.BalancedTree;
 
 public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{

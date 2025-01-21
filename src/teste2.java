@@ -1,4 +1,4 @@
-import Trees.ArvoreAVL;
+import TreeAVL.ArvoreAVL;
 
 
 public class teste2 {

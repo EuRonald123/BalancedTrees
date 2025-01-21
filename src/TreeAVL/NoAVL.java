@@ -1,4 +1,4 @@
-package Trees;
+package TreeAVL;
 public class NoAVL<T> {
     T element;
 	NoAVL<T> left;
