@@ -5,7 +5,7 @@ import TreeRB.NodeRB.Color;
 
 
 
-public class RBtree<T extends Comparable<T>>{
+public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
 
     private final NodeRB<T> nil = new NodeRB<>(null);
 
@@ -58,11 +58,6 @@ public class RBtree<T extends Comparable<T>>{
         }
         key.right=node;
         node.parent=key;
-    }
-
-    public void insert(T element){
-        NodeRB<T> newNode = new NodeRB<>(element);
-        RBInsert(newNode);
     }
 
     private void RBInsert(NodeRB<T> node){
@@ -258,7 +253,7 @@ public class RBtree<T extends Comparable<T>>{
 	}
 
 
-    private NodeRB<T> findTeste(T key){
+    private NodeRB<T> findNode(T key){
 		NodeRB<T> temp = root;
         while (true) {
             if (key.compareTo(temp.element)<0) { // node in left subtree
@@ -278,10 +273,16 @@ public class RBtree<T extends Comparable<T>>{
             }
         }
 	}
+    @Override
+    public void insert(T element){
+        NodeRB<T> newNode = new NodeRB<>(element);
+        RBInsert(newNode);
+    }
 
+    @Override
     public boolean remove(T element){
         NodeRB<T> nodeBackup = new NodeRB<>(element);
-        nodeBackup = findTeste(element);
+        nodeBackup = findNode(element);
         if(nodeBackup == null){
             System.out.println("\n*Elemento não enconrado*\n");
             return false;
@@ -295,14 +296,53 @@ public class RBtree<T extends Comparable<T>>{
         }
     }
 
-    
+    private void printInOrder(NodeRB<T> node){
+        if(node == nil) {
+            System.out.println("\nNo nodes in the tree\n");
+            return;
+        }
+        if(node.left != nil) {
+            printInOrder(node.left);
+        }
+        System.out.println(node.element + " ");
+        if(node.right != nil) {
+            printInOrder(node.right);
+        }
+    }
 
+    private void printPosOrder(NodeRB<T> node){
+        if(node == nil){
+            System.out.println("\n No nodes in the tree\n");
+            return;
+        }
+        if(node.left!=nil){
+            printPosOrder(node.left);
+        }
+        if(node.right!=nil){
+            printPosOrder(node.right);
+        }
+        System.out.println(node.element + "");
+    }
+
+    public void printPosOrder(){
+        printPosOrder(root);
+    }
+
+    
+    @Override
     public boolean find(T node){
-        if(findTeste(node) != null){
+        if(findNode(node) != null){
             return true;
         }
         return false;
     }
+    @Override
+    public int getHeight(){
+        return -1;
+    }
 
-
+    @Override
+    public void printInOrder(){
+        printInOrder(root);
+    }
 }

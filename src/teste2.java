@@ -18,13 +18,26 @@ public class teste2 {
 		}
 
 		//teste para arvore RB
-		int []vetRB= {46,27,20,15,10,90,98,95};
+		int []vetRB= {41,38,31,12,19,8};
 		for(int i=0;i<vetRB.length;i++) {
 			treeRB.insert(vetRB[i]);
 		}
 
+		System.out.println("\n***InOrder***\n");
+		treeRB.printInOrder();
+        System.out.println("\n**********************************************");
+		System.out.println("\n***PosOrder***\n");
+        treeRB.printPosOrder();
 
-		treeRB.remove(20);
+
+		//treeRB.remove(20);
+
+
+		System.out.println("\n***InOrder***\n");
+		treeRB.printInOrder();
+        System.out.println("\n**********************************************");
+		System.out.println("\n***PosOrder***\n");
+        treeRB.printPosOrder();
 
 
         System.out.println("\n***InOrder***\n");
