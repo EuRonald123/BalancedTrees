@@ -53,8 +53,8 @@ public class RBtree<T extends Comparable<T>>{
         key.right=node;
         node.parent=key;
     }
-
-    private void insert(T element){
+    
+    public void insert(T element){
         NodeRB<T> newNode = new NodeRB<>(element);
         RBInsert(newNode);
     }
