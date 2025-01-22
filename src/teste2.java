@@ -5,7 +5,7 @@ public class teste2 {
 	public static void main(String[] args) {
 		ArvoreAVL<Integer> avlTree = new ArvoreAVL<>();
 		ArvoreAVL<String> avlTreeString = new ArvoreAVL<>();
-		RBtree<Integer> teste = new RBtree<>();
+		RBtree<Integer> treeRB = new RBtree<>();
 		
 		int []vet= {46,27,20,15,10,90,98,95};
 		for(int i=0;i<vet.length;i++) {
@@ -17,9 +17,15 @@ public class teste2 {
 			avlTreeString.insert(vetName[i]);
 		}
 
-		teste.insert(1);
-		teste.insert(2);
-		teste.insert(5);
+		//teste para arvore RB
+		int []vetRB= {46,27,20,15,10,90,98,95};
+		for(int i=0;i<vetRB.length;i++) {
+			treeRB.insert(vetRB[i]);
+		}
+
+
+		treeRB.remove(20);
+
 
         System.out.println("\n***InOrder***\n");
 		avlTree.printInOrder();
@@ -49,32 +55,5 @@ public class teste2 {
 		}else{
 			System.out.println("***FALSE***");
 		}
-
-
-
-
-		System.out.println("\n**********************************************");
-		System.out.println("\n***InOrder***\n");
-		avlTreeString.printInOrder();
-		System.out.println("\n**********************************************");
-		System.out.println("\n***PosOrder***\n");
-		avlTreeString.printPosOrder();
-
-		avlTreeString.remove("peituda");
-
-		System.out.println("\n*****************************\n");
-		if(avlTreeString.find("peituda")){
-			System.out.println("\n***TRUE***");
-		}else{
-			System.out.println("***FALSE***");
-		}
-
-
-		System.out.println("\n**********************************************");
-		System.out.println("\n***InOrder***\n");
-		avlTreeString.printInOrder();
-		System.out.println("\n**********************************************");
-		System.out.println("\n***PosOrder***\n");
-		avlTreeString.printPosOrder();
 	}
 }

@@ -1,7 +1,9 @@
 package TreeRB;
-//import Interface.BalancedTree;
-
+import Interface.BalancedTree;
 import TreeRB.NodeRB.Color;
+
+
+
 
 public class RBtree<T extends Comparable<T>>{
 
@@ -80,7 +82,7 @@ public class RBtree<T extends Comparable<T>>{
         if(y == nil){
             root = node;
         }
-        //o problema estava aqui, ele tava comparando com x mas x é folha, tem que comparar com y que é pais de x;
+        //o problema estava aqui, ele tava comparando com x mas x é folha, tem que comparar com y que é pai de x;
         else if(node.element.compareTo(y.element)<0){
             y.left = node;
         }
@@ -135,6 +137,171 @@ public class RBtree<T extends Comparable<T>>{
             }
         }
         root.color = Color.BLACK;
+    }
+
+    private void RBTransplant(NodeRB<T> u, NodeRB<T> v){
+        if (u.parent == nil){
+            root = v;
+        }
+        else if(u == u.parent.left){
+            u.parent.left = v;
+        }
+        else{
+            u.parent.right = v;
+        }
+        v.parent = u.parent;
+    }
+
+    private boolean RBRemove(NodeRB<T> node){
+        NodeRB<T> x;
+        NodeRB<T> y = node;
+        Color y_original_color = y.color;
+        if (node.left == nil){
+             x = node.right;
+             RBTransplant(node, node.right);
+        }
+        else if(node.right == nil){
+            x=node.left;
+            RBTransplant(node, node.left);
+        }
+        else{
+            y = findMin(node.right);
+            //to em duvida aqui, acho que vai dar erro na hora de recolorir. se der bug olhar aqui
+            y_original_color = y.color;
+            x = y.right;
+            if(y.parent == node){
+                x.parent = y;
+            }
+            else{
+                RBTransplant(y, y.right);
+                y.right = node.right;
+                y.right.parent = y;
+            }
+            
+            RBTransplant(node, y);
+            y.left = node.left;
+            y.left.parent = y;
+            y.color = node.color; 
+        }
+        if(y_original_color == Color.BLACK){
+            RBRemoveFixUp(x);
+        }
+        return true;
+    }
+
+    private void RBRemoveFixUp(NodeRB<T> x){
+        NodeRB<T> w;
+        while(x != root && x.color == Color.BLACK){
+            if (x == x.parent.left){
+                w = x.parent.right;
+                if(w.color == Color.RED){
+                    w.color=Color.BLACK;
+                    x.parent.color = Color.RED;
+                    simpleLeftRotation(x.parent);
+                    w = x.parent.right;
+                }
+                if(w.left.color == Color.BLACK && w.right.color == Color.BLACK){
+                    w.color = Color.RED;
+                    x = x.parent;
+                }
+                else if(w.right.color == Color.BLACK){ 
+                    w.left.color = Color.BLACK;
+                    w.color = Color.RED;
+                    simpleRightRotation(w);
+                    w = x.parent.right;
+                }
+                if(w.right.color == Color.RED){
+                    w.color = w.parent.color;
+                    x.parent.color = Color.BLACK;
+                    w.right.color= Color.BLACK;
+                    simpleLeftRotation(x.parent);
+                    x = root;
+                }
+            }
+            else{
+                w = x.parent.left;
+                if(w.color == Color.RED){
+                    w.color=Color.BLACK;
+                    x.parent.color = Color.RED;
+                    simpleRightRotation(x.parent);
+                    w = x.parent.left;
+                }
+                if(w.left.color == Color.BLACK && w.right.color == Color.BLACK){
+                    w.color = Color.RED;
+                    x = x.parent;
+                }
+                else if(w.left.color == Color.BLACK){ 
+                    w.right.color = Color.BLACK;
+                    w.color = Color.RED;
+                    simpleLeftRotation(w);
+                    w = x.parent.right;
+                }
+                if(w.left.color == Color.RED){
+                    w.color = w.parent.color;
+                    x.parent.color = Color.BLACK;
+                    w.left.color= Color.BLACK;
+                    simpleRightRotation(x.parent);
+                    x = root;
+                }
+            } 
+        }
+        x.color=Color.BLACK;
+    }
+
+
+    //funcao para pegar o minimo da subarvore direita // essa fun é da avl, não sei se funciona da RB
+    private NodeRB<T> findMin(NodeRB<T> node){
+		while(node.left != nil) {
+			node = node.left;
+		}
+		return node;
+	}
+
+
+    private NodeRB<T> findTeste(T key){
+		NodeRB<T> temp = root;
+        while (true) {
+            if (key.compareTo(temp.element)<0) { // node in left subtree
+                if (temp.left == nil) { // not found
+                    return null;
+                } else { // move left
+                    temp = temp.left;
+                }
+            }else if (key.compareTo(temp.element)==0) { // bingo!
+                return temp; 
+            } else { // (node.value > temp.value) node in right subtree
+                if (temp.right == nil) { // not found
+                    return null;
+                } else { // move right
+                    temp = temp.right;
+                }
+            }
+        }
+	}
+
+    public boolean remove(T element){
+        NodeRB<T> nodeBackup = new NodeRB<>(element);
+        nodeBackup = findTeste(element);
+        if(nodeBackup == null){
+            System.out.println("\n*Elemento não enconrado*\n");
+            return false;
+        }
+        if(RBRemove(nodeBackup)){
+            return true;
+        }
+        else{
+            System.out.println("\n*Falha na remocao*\n");
+            return false;
+        }
+    }
+
+    
+
+    public boolean find(T node){
+        if(findTeste(node) != null){
+            return true;
+        }
+        return false;
     }
 
 
