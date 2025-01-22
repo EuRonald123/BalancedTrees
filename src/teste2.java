@@ -1,6 +1,5 @@
 import TreeAVL.ArvoreAVL;
 
-
 public class teste2 {
 	public static void main(String[] args) {
 		ArvoreAVL<Integer> avlTree = new ArvoreAVL<>();
