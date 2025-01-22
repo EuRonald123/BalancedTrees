@@ -5,12 +5,16 @@ import TreeRB.NodeRB.Color;
 
 public class RBtree<T extends Comparable<T>>{
 
-    public final NodeRB<T> nil = new NodeRB<>(null);
+    private final NodeRB<T> nil = new NodeRB<>(null);
 
     private NodeRB<T> root;
     
     public RBtree(){
-        this.root = nil;
+        this.root=nil;
+        nil.parent=nil;
+        nil.left=nil;
+        nil.right=nil;
+        nil.color=Color.BLACK;
     }
 
 
@@ -53,7 +57,7 @@ public class RBtree<T extends Comparable<T>>{
         key.right=node;
         node.parent=key;
     }
-    
+
     public void insert(T element){
         NodeRB<T> newNode = new NodeRB<>(element);
         RBInsert(newNode);
@@ -76,7 +80,8 @@ public class RBtree<T extends Comparable<T>>{
         if(y == nil){
             root = node;
         }
-        else if(node.element.compareTo(x.element)<0){
+        //o problema estava aqui, ele tava comparando com x mas x é folha, tem que comparar com y que é pais de x;
+        else if(node.element.compareTo(y.element)<0){
             y.left = node;
         }
         else{
@@ -89,8 +94,8 @@ public class RBtree<T extends Comparable<T>>{
     }
 
     private void RBInserFixUp(NodeRB<T> node){
-        NodeRB<T> y = nil;
-        while (node.parent.color == Color.RED){
+        NodeRB<T> y =nil;
+        while (node.parent.color == Color.RED){ 
             if (node.parent == node.parent.parent.left){
                 y = node.parent.parent.right;
                 if(y.color == Color.RED){
@@ -99,13 +104,16 @@ public class RBtree<T extends Comparable<T>>{
                     node.parent.parent.color = Color.RED;
                     node = node.parent.parent;
                 }
-                else if(node == node.parent.right){
+                else{
+                     if(node == node.parent.right){
                     node = node.parent;
                     simpleLeftRotation(node);
+                     }
+                
+                    node.parent.color = Color.BLACK;
+                    node.parent.parent.color = Color.RED;
+                    simpleRightRotation(node.parent.parent);
                 }
-                node.parent.color = Color.BLACK;
-                node.parent.parent.color = Color.RED;
-                simpleRightRotation(node.parent.parent);
             }
             else{
                 y = node.parent.parent.left;
@@ -115,13 +123,15 @@ public class RBtree<T extends Comparable<T>>{
                     node.parent.parent.color = Color.RED;
                     node = node.parent.parent;
                 }
-                else if(node == node.parent.left){
-                    node = node.parent;
-                    simpleRightRotation(node);
+                else {
+                    if(node == node.parent.left){
+                        node = node.parent;
+                        simpleRightRotation(node);
+                    }
+                    node.parent.color = Color.BLACK;
+                    node.parent.parent.color = Color.RED;
+                    simpleLeftRotation(node.parent.parent);
                 }
-                node.parent.color = Color.BLACK;
-                node.parent.parent.color = Color.RED;
-                simpleLeftRotation(node.parent.parent);
             }
         }
         root.color = Color.BLACK;

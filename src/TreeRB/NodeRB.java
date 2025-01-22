@@ -13,15 +13,8 @@ public class NodeRB<T> {
         RED,BLACK
     }
     
-    
-
     public NodeRB(T e){
-        this.element=e;
-        this.parent = null;
-        this.left = null;
-        this.right=null;
-        this.color=null;
-        //this.n;
+        this(e,null,null,null,false);
     }
 
     public NodeRB(T e,NodeRB<T> parent,NodeRB<T> left,NodeRB<T> right,boolean c){
