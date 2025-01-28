@@ -19,6 +19,9 @@ public class Leitura {
 
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
             String linha;
+            //pula a primeira linha
+            reader.readLine();
+
             while((linha = reader.readLine()) != null){
 
                 //para ignorar as linhas vazias no nosso caso, a ultima linha
@@ -44,6 +47,8 @@ public class Leitura {
 
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
             String linha;
+            //para pular a primeira linha
+            reader.readLine();
             while((linha = reader.readLine()) != null){
 
                 //para ignorar as linhas vazias no nosso caso, a ultima linha
@@ -69,6 +74,8 @@ public class Leitura {
 
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
             String linha;
+            //para pular a primeira linha
+            reader.readLine();
             while((linha = reader.readLine()) != null){
 
                 //para ignorar as linhas vazias no nosso caso, a ultima linha
