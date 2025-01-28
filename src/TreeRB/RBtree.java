@@ -65,7 +65,11 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
         NodeRB<T> x = root;
         while(x != nil){
             y = x;
-            if(node.element.compareTo(x.element)<0){
+            if(node.element.compareTo(x.element)==0){
+                //elemento ja existe, nao insere novamente
+                return;
+            }
+            else if(node.element.compareTo(x.element)<0){
                 x = x.left;
             }
             else{
