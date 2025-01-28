@@ -1,5 +1,7 @@
 import TreeAVL.ArvoreAVL;
 import TreeRB.RBtree;
+import Arquivos.Leitura;
+import Arquivos.Escrita;
 
 public class teste2 {
 	public static void main(String[] args) {
@@ -7,66 +9,15 @@ public class teste2 {
 		ArvoreAVL<String> avlTreeString = new ArvoreAVL<>();
 		RBtree<Integer> treeRB = new RBtree<>();
 		
-		int []vet= {46,27,20,15,10,90,98,95};
-		for(int i=0;i<vet.length;i++) {
-			avlTree.insert(vet[i]);
-		}
+		Leitura leitura = new Leitura();
 
-		String []vetName= {"Ro","rona","ronal","ronald"};
-		for(int i=0;i<vetName.length;i++) {
-			avlTreeString.insert(vetName[i]);
-		}
-
-		//teste para arvore RB
-		int []vetRB= {41,38,31,12,19,8};
-		for(int i=0;i<vetRB.length;i++) {
-			treeRB.insert(vetRB[i]);
-		}
-
-		System.out.println("\n***InOrder***\n");
-		treeRB.printInOrder();
-        System.out.println("\n**********************************************");
-		System.out.println("\n***PosOrder***\n");
-        treeRB.printPosOrder();
-
-
-		//treeRB.remove(20);
-
-
-		System.out.println("\n***InOrder***\n");
-		treeRB.printInOrder();
-        System.out.println("\n**********************************************");
-		System.out.println("\n***PosOrder***\n");
-        treeRB.printPosOrder();
-
-
-        System.out.println("\n***InOrder***\n");
-		avlTree.printInOrder();
-        System.out.println("\n**********************************************");
-        System.out.println("\n***PosOrder***\n");
-        avlTree.printPosOrder();
-
+		Escrita escritor = new Escrita();
+		escritor.ecrever_no_arquivo("1.000.000_inteiros.txt",1000000);
 		
-		boolean removido = avlTree.remove(10);
-		if(removido){
-			System.out.println("\n***Remocao foi um sucesso***\n");
-		}else{
-			System.out.println("\n***Elemento nao encontrado***\n");
-		}
+		leitura.lerArquivo_e_armazenar_AVL(avlTree);
 
-		System.out.println("\n**********************************************");
-		System.out.println("\n***InOrder***\n");
+		System.out.println("\n*** Em ordem ***");
 		avlTree.printInOrder();
-        System.out.println("\n**********************************************");
-        System.out.println("\n***PosOrder***\n");
-        avlTree.printPosOrder();
-
-
-		System.out.println("\n*****************************\n");
-		if(avlTree.find(90)){
-			System.out.println("\n***TRUE***");
-		}else{
-			System.out.println("***FALSE***");
-		}
+		System.out.println("********************");
 	}
 }
