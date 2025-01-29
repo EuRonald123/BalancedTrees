@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Leitura {
 
     //ler do arquivo e armazenar n treeAVL
-    public void lerArquivo_e_armazenar_inteiros_treeAVL(ArvoreAVL<Integer> avlTree,String nomeArquivo){
+    public void lerArquivo_e_armazenar_inteiros(ArvoreAVL<Integer> avlTree,String nomeArquivo){
 
         //separar por tipo, se for int pum, se for float , pam, se for caractere , pow
 
@@ -40,7 +40,7 @@ public class Leitura {
 
 
     //ler do arquivo e armazenar na rubro negra
-    public void lerArquivo_e_armazenar_inteiros_treeRB(RBtree<Integer> RBtree,String nomeArquivo){
+    public void lerArquivo_e_armazenar_inteiros(RBtree<Integer> RBtree,String nomeArquivo){
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
@@ -67,7 +67,7 @@ public class Leitura {
 
 
 
-    public void lerArquivo_e_armazenar_inteiros_ArrayList(ArrayList<Integer> array,String nomeArquivo){
+    public void lerArquivo_e_armazenar_inteiros(ArrayList<Integer> array,String nomeArquivo){
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido

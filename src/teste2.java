@@ -10,10 +10,10 @@ public class teste2 {
 		//inicializa as arvores
 		ArvoreAVL<Integer> B = new ArvoreAVL<>();
 		//ArvoreAVL<Integer> C = new ArvoreAVL<>();
-		RBtree<Integer> treeRB = new RBtree<>();
+		RBtree<Integer> D = new RBtree<>();
 
 
-		AVLController intersecao = new AVLController();
+		Controller controller = new Controller();
 		
 		
 		Leitura leitura = new Leitura();
@@ -23,27 +23,19 @@ public class teste2 {
 		//escritor.gerarInteiros("teste", 10);
 		
 		
-		//leitura.lerArquivo_e_armazenar_inteiros_treeRB(treeRB, "1.000.000_inteiros.txt");
+		//leitura.lerArquivo_e_armazenar_inteiros(treeRB, "1.000.000_inteiros.txt");
+
 
 		
 
+		leitura.lerArquivo_e_armazenar_inteiros(A, "1000_inteiros.txt");
+		leitura.lerArquivo_e_armazenar_inteiros(B, "100.000_inteiros.txt");
+		//leitura.lerArquivo_e_armazenar_inteiros(D, "1.000.000_inteiros.txt");
 
-		//int valorBuscado = 999967;
-		//if(treeRB.find(valorBuscado)){
-		//	System.out.println("\n valor buscado: "+valorBuscado+" esta presente na arvore");
-		//}
-		//else{
-		//	System.out.println("\n"+valorBuscado+" nao esta na arvore");
-		//}
+		controller.Intersecao_A_B(A, B);
+		controller.Uniao_A_B(A, B);
 
-		
-
-		leitura.lerArquivo_e_armazenar_inteiros_ArrayList(A, "1000_inteiros.txt");
-		leitura.lerArquivo_e_armazenar_inteiros_treeAVL(B, "100.000_inteiros.txt");
-
-		intersecao.Uniao_A_B(A, B);
-
-		int valorBuscado = 44616;
+		int valorBuscado = 460;
 		if(B.find(valorBuscado)){
 			System.out.println("\n valor buscado: "+valorBuscado+" esta presente na arvore");
 		}
@@ -51,7 +43,14 @@ public class teste2 {
 			System.out.println("\n"+valorBuscado+" nao esta na arvore");
 		}
 
-		
+		controller.Remove_elem_de_A_presentes_em_B(A, B);
 
+
+		for(int elem:A){
+			if(elem == 889){
+				System.out.println("\n"+elem+ " presente");
+				break;
+			}
+		}
 	}
 }
