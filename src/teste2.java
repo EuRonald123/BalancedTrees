@@ -30,16 +30,20 @@ public class teste2 {
 
 		//
 		leitura.lerArquivo_e_armazenar(A, "1000_inteiros.txt");
-		leitura.lerArquivo_e_armazenar(B, "1000names.csv");
+		leitura.lerArquivo_e_armazenar(D, "1000names.csv");
 		//leitura.lerArquivo_e_armazenar_inteiros(D, "1.000.000_inteiros.txt");
 
-		controller.Intersecao_A_B(A, B);
-		controller.Uniao_A_B(A, B);
-		//controller.Add_B_Uniao_A_B(A, B);
-		//B.printInOrder();
+		controller.Intersecao_A_B(A, D);
+		controller.Uniao_A_B(A, D);
+		//controller.Add_B_Uniao_A_B(A, D);
+		D.printInOrder();
+		
+		int altura = D.getHeight();
+		System.out.println("\nAltura: "+altura);
+		
 
 		String valorBuscado = "29";
-		if(B.find(valorBuscado)){
+		if(D.find(valorBuscado)){
 			System.out.println("\nvalor buscado: "+valorBuscado+" esta presente na arvore");
 		}
 		else{

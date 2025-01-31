@@ -277,6 +277,7 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
             }
         }
 	}
+
     @Override
     public void insert(T element){
         NodeRB<T> newNode = new NodeRB<>(element);
@@ -328,10 +329,16 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
         System.out.println(node.element + "");
     }
 
-    public void printPosOrder(){
-        printPosOrder(root);
+    private int getHeight(NodeRB<T> root){
+        NodeRB<T> node = root;
+        if(node == nil){
+            return 0;
+        }
+        int l = getHeight(node.left);
+        int r = getHeight(node.right);
+        
+        return Math.max(l, r)+1;
     }
-
     
     @Override
     public boolean find(T node){
@@ -340,9 +347,10 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
         }
         return false;
     }
+
     @Override
     public int getHeight(){
-        return -1;
+        return getHeight(root);
     }
 
     @Override
