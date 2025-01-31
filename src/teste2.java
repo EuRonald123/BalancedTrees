@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class teste2 {
 	public static void main(String[] args) {
-		ArrayList<Integer> A = new ArrayList<>();
+		ArrayList<String> A = new ArrayList<>();
 		//inicializa as arvores
-		ArvoreAVL<Integer> B = new ArvoreAVL<>();
+		ArvoreAVL<String> B = new ArvoreAVL<>();
 		//ArvoreAVL<Integer> C = new ArvoreAVL<>();
-		RBtree<Integer> D = new RBtree<>();
+		RBtree<String> D = new RBtree<>();
 
 
 		Controller controller = new Controller();
@@ -28,29 +28,34 @@ public class teste2 {
 
 		
 
+		//
 		leitura.lerArquivo_e_armazenar_inteiros(A, "1000_inteiros.txt");
-		leitura.lerArquivo_e_armazenar_inteiros(B, "100.000_inteiros.txt");
+		leitura.lerArquivo_e_armazenar_inteiros(B, "1000names.csv");
 		//leitura.lerArquivo_e_armazenar_inteiros(D, "1.000.000_inteiros.txt");
 
 		controller.Intersecao_A_B(A, B);
 		controller.Uniao_A_B(A, B);
+		//controller.Add_B_Uniao_A_B(A, B);
+		//B.printInOrder();
 
-		int valorBuscado = 460;
+		String valorBuscado = "29";
 		if(B.find(valorBuscado)){
-			System.out.println("\n valor buscado: "+valorBuscado+" esta presente na arvore");
+			System.out.println("\nvalor buscado: "+valorBuscado+" esta presente na arvore");
 		}
 		else{
 			System.out.println("\n"+valorBuscado+" nao esta na arvore");
 		}
 
-		controller.Remove_elem_de_A_presentes_em_B(A, B);
+		//controller.Remove_elem_de_A_presentes_em_B(A, B);
 
 
-		for(int elem:A){
-			if(elem == 889){
+		for(String elem:A){
+			if(elem.equals(valorBuscado)){
 				System.out.println("\n"+elem+ " presente");
 				break;
 			}
 		}
+
+		
 	}
 }

@@ -8,12 +8,12 @@ public class Controller {
 
     //busca os elementos de A que estão em B e gera um arquivo;
     //cobrado da lista
-    public void Intersecao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
+    public void Intersecao_A_B(ArrayList<String> A,ArvoreAVL<String> B){
         boolean append = false;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
         append=true;
         
-        for(int x:A){
+        for(String x:A){
             if(B.find(x)){
                 escritor.ecrever_no_arquivo("Intersecao_A_B.txt", x,append);
             }
@@ -22,11 +22,11 @@ public class Controller {
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
     //bom para testes
-    public void Uniao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
+    public void Uniao_A_B(ArrayList<String> A,ArvoreAVL<String> B){
         boolean append = false;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
         append = true;
-        for(int x:A){
+        for(String x:A){
             if(B.find(x)==false){
                 //escrever em um arquivo
                 escritor.ecrever_no_arquivo("Uniao_A_B.txt", x,append);
@@ -36,8 +36,8 @@ public class Controller {
 
     //esse metodo apenas adiciona em B os elementos de A que nao estavam em B
     //cobrado da lista
-    public void Add_B_Uniao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
-        for(int x:A){
+    public void Add_B_Uniao_A_B(ArrayList<String> A,ArvoreAVL<String> B){
+        for(String x:A){
             if(B.find(x)==false){
                 B.insert(x);
             }
@@ -46,7 +46,7 @@ public class Controller {
 
     //método para remover os elementos de A que estão presentes em B;
     //cobrado da lista
-    public void Remove_elem_de_A_presentes_em_B(ArrayList<Integer> A, ArvoreAVL<Integer> B){
+    public void Remove_elem_de_A_presentes_em_B(ArrayList<String> A, ArvoreAVL<String> B){
 
         /*essa funcao removeIF remove de um ArrayList se cumprir uma condição
         Nesse caso para cada elemento de A se B.find(elementoDeA)==true então remove*/
@@ -61,12 +61,12 @@ public class Controller {
 
     //busca os elementos de A que estão em B e gera um arquivo;
     //cobrado da lista
-    public void Intersecao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
+    public void Intersecao_A_B(ArrayList<String> A,RBtree<String> B){
         boolean append = false;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
         append=true;
         
-        for(int x:A){
+        for(String x:A){
             if(B.find(x)){
                 escritor.ecrever_no_arquivo("Intersecao_A_B.txt", x,append);
             }
@@ -75,11 +75,11 @@ public class Controller {
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
     //bom para testes
-    public void Uniao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
+    public void Uniao_A_B(ArrayList<String> A,RBtree<String> B){
         boolean append = false;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
         append = true;
-        for(int x:A){
+        for(String x:A){
             if(B.find(x)==false){
                 //escrever em um arquivo
                 escritor.ecrever_no_arquivo("Uniao_A_B.txt", x,append);
@@ -89,8 +89,8 @@ public class Controller {
 
     //esse metodo apenas adiciona em B os elementos de A que nao estavam em B
     //cobrado da lista
-    public void Add_B_Uniao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
-        for(int x:A){
+    public void Add_B_Uniao_A_B(ArrayList<String> A,RBtree<String> B){
+        for(String x:A){
             if(B.find(x)==false){
                 B.insert(x);
             }
@@ -99,7 +99,7 @@ public class Controller {
 
     //método para remover os elementos de A que estão presentes em B;
     //cobrado da lista
-    public void Remove_elem_de_A_presentes_em_B(ArrayList<Integer> A, RBtree<Integer> B){
+    public void Remove_elem_de_A_presentes_em_B(ArrayList<String> A, RBtree<String> B){
         /*essa funcao removeIF remove de um ArrayList se cumprir uma condição
         Nesse caso para cada elemento de A se B.find(elementoDeA)==true então remove
         Não foi possível aplicar aquela remoção padrão percorrendo todos os elementos*/

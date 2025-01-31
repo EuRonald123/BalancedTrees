@@ -29,14 +29,14 @@ public class Escrita {
         }
     }
 
-    public void ecrever_no_arquivo(String nomeArquivo,int elemento,boolean append){
+    public void ecrever_no_arquivo(String nomeArquivo,String elemento,boolean append){
         String caminhoArquivo = "ED2_INTERSECAO/src/";
         //boolean append = true;
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminhoArquivo+nomeArquivo,append))){
             String linha;
 
-            linha = Integer.toString(elemento);
-            escritor.write(linha + "\n");
+            //linha = Integer.toString(elemento);
+            escritor.write(elemento + "\n");
 
         } catch (IOException error) {
             System.out.println("\nNao foi possivel escrever no arquivo"+error.getMessage());

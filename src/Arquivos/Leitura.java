@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Leitura {
 
     //ler do arquivo e armazenar n treeAVL
-    public void lerArquivo_e_armazenar_inteiros(ArvoreAVL<Integer> avlTree,String nomeArquivo){
+    public void lerArquivo_e_armazenar_inteiros(ArvoreAVL<String> avlTree,String nomeArquivo){
 
         //separar por tipo, se for int pum, se for float , pam, se for caractere , pow
 
@@ -29,8 +29,8 @@ public class Leitura {
                     continue;
                 }
 
-                int valor = Integer.parseInt(linha);
-                avlTree.insert(valor);
+                //int valor = Integer.parseInt(linha);
+                avlTree.insert(linha);
             }
 
         }catch(IOException error){
@@ -40,7 +40,7 @@ public class Leitura {
 
 
     //ler do arquivo e armazenar na rubro negra
-    public void lerArquivo_e_armazenar_inteiros(RBtree<Integer> RBtree,String nomeArquivo){
+    public void lerArquivo_e_armazenar_inteiros(RBtree<String> RBtree,String nomeArquivo){
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
@@ -56,8 +56,8 @@ public class Leitura {
                     continue;
                 }
 
-                int valor = Integer.parseInt(linha);
-                RBtree.insert(valor);
+                //int valor = Integer.parseInt(linha);
+                RBtree.insert(linha);
             }
 
         }catch(IOException error){
@@ -67,7 +67,7 @@ public class Leitura {
 
 
 
-    public void lerArquivo_e_armazenar_inteiros(ArrayList<Integer> array,String nomeArquivo){
+    public void lerArquivo_e_armazenar_inteiros(ArrayList<String> array,String nomeArquivo){
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
@@ -83,8 +83,8 @@ public class Leitura {
                     continue;
                 }
 
-                int valor = Integer.parseInt(linha);
-                array.add(valor);
+                //int valor = Integer.parseInt(linha);
+                array.add(linha);
             }
 
         }catch(IOException error){
