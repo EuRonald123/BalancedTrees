@@ -33,7 +33,7 @@ public class Escrita {
         String caminhoArquivo = "ED2_INTERSECAO/src/";
         //boolean append = true;
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminhoArquivo+nomeArquivo,append))){
-            String linha;
+            //String linha;
 
             //linha = Integer.toString(elemento);
             escritor.write(elemento + "\n");
