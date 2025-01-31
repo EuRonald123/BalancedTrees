@@ -29,8 +29,8 @@ public class teste2 {
 		
 
 		//
-		leitura.lerArquivo_e_armazenar_inteiros(A, "1000_inteiros.txt");
-		leitura.lerArquivo_e_armazenar_inteiros(B, "1000names.csv");
+		leitura.lerArquivo_e_armazenar(A, "1000_inteiros.txt");
+		leitura.lerArquivo_e_armazenar(B, "1000names.csv");
 		//leitura.lerArquivo_e_armazenar_inteiros(D, "1.000.000_inteiros.txt");
 
 		controller.Intersecao_A_B(A, B);
