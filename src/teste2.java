@@ -1,5 +1,6 @@
 import TreeAVL.ArvoreAVL;
 import TreeRB.RBtree;
+import HashTable.HashTentativaLinear;
 import Arquivos.*;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class teste2 {
 		ArvoreAVL<String> B = new ArvoreAVL<>();
 		//ArvoreAVL<Integer> C = new ArvoreAVL<>();
 		RBtree<String> D = new RBtree<>();
+
 
 
 		Controller controller = new Controller();
@@ -35,14 +37,16 @@ public class teste2 {
 
 		controller.Intersecao_A_B(A, D);
 		controller.Uniao_A_B(A, D);
+
 		//controller.Add_B_Uniao_A_B(A, D);
-		D.printInOrder();
+
+		//D.printInOrder();
 		
 		int altura = D.getHeight();
 		System.out.println("\nAltura: "+altura);
 		
 
-		String valorBuscado = "29";
+		String valorBuscado = "561";
 		if(D.find(valorBuscado)){
 			System.out.println("\nvalor buscado: "+valorBuscado+" esta presente na arvore");
 		}
@@ -50,7 +54,7 @@ public class teste2 {
 			System.out.println("\n"+valorBuscado+" nao esta na arvore");
 		}
 
-		//controller.Remove_elem_de_A_presentes_em_B(A, B);
+		//controller.Remove_elem_de_A_presentes_em_B(A, D);
 
 
 		for(String elem:A){
