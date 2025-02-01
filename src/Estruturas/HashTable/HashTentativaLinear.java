@@ -28,7 +28,7 @@ public class HashTentativaLinear<Key, Value> { // key e value são generics, tip
 		int x =0;
 		int i=0;
 		for (i=0;i<str.length();i++){
-			x = (31 * x) + str.charAt(i);
+			x = (73 * x) + str.charAt(i);
 		}
 		return Math.abs(x) % M;
 
@@ -69,6 +69,8 @@ public class HashTentativaLinear<Key, Value> { // key e value são generics, tip
 
 	        return get(key) != null;
 	 }
+
+	 
 	
 	/**
 	 * Insere um novo objeto no Hash 
@@ -76,7 +78,6 @@ public class HashTentativaLinear<Key, Value> { // key e value são generics, tip
 	 * @param val
 	 */
 	public void put(Key key, Value val) {
-		// Implementar
 		if (N >= M / 2) {
             resize(2 * M); // Redimensiona a tabela se estiver cheia
         }

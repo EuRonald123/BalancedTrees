@@ -248,7 +248,11 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
     }
 
 
-    //funcao para pegar o minimo da subarvore direita // essa fun é da avl, não sei se funciona da RB
+    /**
+     * Funcao que pega o menor elemento da subarvore direita
+     * @param key
+     * @return nodeMin
+     */
     private NodeRB<T> findMin(NodeRB<T> node){
 		while(node.left != nil) {
 			node = node.left;
@@ -256,27 +260,81 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
 		return node;
 	}
 
-
+    
     private NodeRB<T> findNode(T key){
 		NodeRB<T> temp = root;
         while (true) {
-            if (key.compareTo(temp.element)<0) { // node in left subtree
-                if (temp.left == nil) { // not found
+            if (key.compareTo(temp.element)<0) { 
+                if (temp.left == nil) { 
                     return null;
-                } else { // move left
+                } else { 
                     temp = temp.left;
                 }
-            }else if (key.compareTo(temp.element)==0) { // bingo!
+            }else if (key.compareTo(temp.element)==0) { 
                 return temp; 
-            } else { // (node.value > temp.value) node in right subtree
-                if (temp.right == nil) { // not found
+            } else { 
+                if (temp.right == nil) { 
                     return null;
-                } else { // move right
+                } else { 
                     temp = temp.right;
                 }
             }
         }
 	}
+
+    /**
+     * Funcao que recebe um no e imprime em ordem simetrica
+     * @param node
+     */
+    private void printInOrder(NodeRB<T> node){
+        if(node == nil) {
+            System.out.println("\nNo nodes in the tree\n");
+            return;
+        }
+        if(node.left != nil) {
+            printInOrder(node.left);
+        }
+        System.out.println(node.element + " ");
+        if(node.right != nil) {
+            printInOrder(node.right);
+        }
+    }
+
+
+    /**
+     * Funcao que imprime os elementos em posOrdem, criei para testes
+     * @param node
+     */
+    private void printPosOrder(NodeRB<T> node){
+        if(node == nil){
+            System.out.println("\n No nodes in the tree\n");
+            return;
+        }
+        if(node.left!=nil){
+            printPosOrder(node.left);
+        }
+        if(node.right!=nil){
+            printPosOrder(node.right);
+        }
+        System.out.println(node.element + "");
+    }
+
+    /**
+     * Funcao que percorre a arvore para retornar a altura máxima da arvore
+     * @param root
+     * @return HeightMax
+     */
+    private int getHeight(NodeRB<T> root){
+        NodeRB<T> node = root;
+        if(node == nil){
+            return 0;
+        }
+        int l = getHeight(node.left);
+        int r = getHeight(node.right);
+        
+        return Math.max(l, r)+1;
+    }
+
 
     @Override
     public void insert(T element){
@@ -300,45 +358,6 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
             return false;
         }
     }
-
-    private void printInOrder(NodeRB<T> node){
-        if(node == nil) {
-            System.out.println("\nNo nodes in the tree\n");
-            return;
-        }
-        if(node.left != nil) {
-            printInOrder(node.left);
-        }
-        System.out.println(node.element + " ");
-        if(node.right != nil) {
-            printInOrder(node.right);
-        }
-    }
-
-    private void printPosOrder(NodeRB<T> node){
-        if(node == nil){
-            System.out.println("\n No nodes in the tree\n");
-            return;
-        }
-        if(node.left!=nil){
-            printPosOrder(node.left);
-        }
-        if(node.right!=nil){
-            printPosOrder(node.right);
-        }
-        System.out.println(node.element + "");
-    }
-
-    private int getHeight(NodeRB<T> root){
-        NodeRB<T> node = root;
-        if(node == nil){
-            return 0;
-        }
-        int l = getHeight(node.left);
-        int r = getHeight(node.right);
-        
-        return Math.max(l, r)+1;
-    }
     
     @Override
     public boolean find(T node){
@@ -353,6 +372,7 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
         return getHeight(root);
     }
 
+    
     @Override
     public void printInOrder(){
         printInOrder(root);

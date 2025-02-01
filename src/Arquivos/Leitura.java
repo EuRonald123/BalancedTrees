@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import HashTable.HashTentativaLinear;
+
 public class Leitura {
 
     //ler do arquivo e armazenar n treeAVL
@@ -58,6 +60,34 @@ public class Leitura {
 
                 //int valor = Integer.parseInt(linha);
                 RBtree.insert(linha);
+            }
+
+        }catch(IOException error){
+            System.out.println("Erro na leitura do arquivo" + error.getMessage());
+        }
+    }
+
+    //ler do arquivo e armazenar na rubro negra
+    public void lerArquivo_e_armazenar(HashTentativaLinear<String,String> hashLinear ,String nomeArquivo){
+
+
+        String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
+            String linha;
+            //para pular a primeira linha
+            reader.readLine();
+
+            
+            while((linha = reader.readLine()) != null){
+
+                //para ignorar as linhas vazias no nosso caso, a ultima linha
+                if(linha.trim().isEmpty()){
+                    continue;
+                }
+
+                
+                hashLinear.put(linha,linha);
             }
 
         }catch(IOException error){
