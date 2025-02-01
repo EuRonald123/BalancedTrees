@@ -7,17 +7,17 @@ import java.util.ArrayList;
 
 public class teste2 {
 	public static void main(String[] args) {
-		ArrayList<String> A = new ArrayList<>();
+		ArrayList<Integer> A = new ArrayList<>();
 		//inicializa as arvores
-		ArvoreAVL<String> B = new ArvoreAVL<>();
+		ArvoreAVL<Integer> B = new ArvoreAVL<>();
 		//ArvoreAVL<Integer> C = new ArvoreAVL<>();
 
-		HashTentativaLinear<String, String> C = new HashTentativaLinear<>();
+		HashTentativaLinear<Integer, Integer> C = new HashTentativaLinear<>();
 
 
 
 
-		RBtree<String> D = new RBtree<>();
+		RBtree<Integer> D = new RBtree<>();
 
 
 
@@ -27,18 +27,18 @@ public class teste2 {
 		Leitura leitura = new Leitura();
 
 		//
-		leitura.lerArquivo_e_armazenar(A, "nomes_aleatorios_100K.txt");
-		leitura.lerArquivo_e_armazenar(D, "nomes_aleatorios_1M.txt");
-		leitura.lerArquivo_e_armazenar(B, "nomes_aleatorios_1M.txt");
+		leitura.lerArquivo_e_armazenar(A, "1K_inteiros.txt");
+		leitura.lerArquivo_e_armazenar(D, "1M_inteiros.txt");
+		leitura.lerArquivo_e_armazenar(B, "100K_inteiros.txt");
 		//leitura.lerArquivo_e_armazenar(C, "nomes_aleatorios_1M.txt");
 
-		String name = "Kerry";
-		if(C.contains(name)){
-			System.out.println("\nnome: "+name+" esta presente no hashTentativaLinear");
-		}
+		
 
 		controller.Intersecao_A_B(A, B);
 		controller.Uniao_A_B(A, B);
+
+		Escrita escrever = new Escrita();
+		escrever.gerarInteiros("1M_inteiros.txt", 1000000);
 
 		//controller.Add_B_Uniao_A_B(A, D);
 

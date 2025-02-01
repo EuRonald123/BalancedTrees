@@ -12,9 +12,8 @@ import HashTable.HashTentativaLinear;
 public class Leitura {
 
     //ler do arquivo e armazenar n treeAVL
-    public void lerArquivo_e_armazenar(ArvoreAVL<String> avlTree,String nomeArquivo){
+    public void lerArquivo_e_armazenar(ArvoreAVL<Integer> avlTree,String nomeArquivo){
 
-        //separar por tipo, se for int pum, se for float , pam, se for caractere , pow
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
@@ -31,8 +30,8 @@ public class Leitura {
                     continue;
                 }
 
-                //int valor = Integer.parseInt(linha);
-                avlTree.insert(linha);
+                int valor = Integer.parseInt(linha);
+                avlTree.insert(valor);
             }
 
         }catch(IOException error){
@@ -42,7 +41,7 @@ public class Leitura {
 
 
     //ler do arquivo e armazenar na rubro negra
-    public void lerArquivo_e_armazenar(RBtree<String> RBtree,String nomeArquivo){
+    public void lerArquivo_e_armazenar(RBtree<Integer> RBtree,String nomeArquivo){
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
@@ -58,8 +57,8 @@ public class Leitura {
                     continue;
                 }
 
-                //int valor = Integer.parseInt(linha);
-                RBtree.insert(linha);
+                int valor = Integer.parseInt(linha);
+                RBtree.insert(valor);
             }
 
         }catch(IOException error){
@@ -68,7 +67,7 @@ public class Leitura {
     }
 
     //ler do arquivo e armazenar na rubro negra
-    public void lerArquivo_e_armazenar(HashTentativaLinear<String,String> hashLinear ,String nomeArquivo){
+    public void lerArquivo_e_armazenar(HashTentativaLinear<Integer,Integer> hashLinear ,String nomeArquivo){
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
@@ -86,8 +85,8 @@ public class Leitura {
                     continue;
                 }
 
-                
-                hashLinear.put(linha,linha);
+                int valor = Integer.parseInt(linha);
+                hashLinear.put(valor,valor);
             }
 
         }catch(IOException error){
@@ -97,7 +96,7 @@ public class Leitura {
 
 
 
-    public void lerArquivo_e_armazenar(ArrayList<String> array,String nomeArquivo){
+    public void lerArquivo_e_armazenar(ArrayList<Integer> array,String nomeArquivo){
 
 
         String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
@@ -113,8 +112,8 @@ public class Leitura {
                     continue;
                 }
 
-                //int valor = Integer.parseInt(linha);
-                array.add(linha);
+                int valor = Integer.parseInt(linha);
+                array.add(valor);
             }
 
         }catch(IOException error){

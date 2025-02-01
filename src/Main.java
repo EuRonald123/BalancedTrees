@@ -4,9 +4,9 @@ import Arquivos.*;
 
 
 public class Main {
-    private static final String ARQUIVO_STRING_1K = "nomes_aleatorios_1K.txt";
-    private static final String ARQUIVO_STRING_100K = "nomes_aleatorios_100K.txt";
-    private static final String ARQUIVO_STRING_1M = "nomes_aleatorios_1M.txt";
+    private static final String ARQUIVO_1K = "1K_inteiros.txt";
+    private static final String ARQUIVO_100K = "100K_inteiros.txt";
+    private static final String ARQUIVO_1M = "1M_inteiros.txt";
 
 
     public static void main(String[] args) {
@@ -19,7 +19,21 @@ public class Main {
             int opcao = scan.nextInt();
             switch (opcao) {
                 case 1:
-                    MenuSelecaoTipo(scan);
+                    ArrayList<Integer> arrayA = new ArrayList<>();
+                    ArrayList<Integer> arrayB = new ArrayList<>();
+
+                    Leitura ler = new Leitura();
+
+                    String str = TamanhoArquivoString(scan);
+
+                    if(str !=null && !str.isEmpty()){
+                        ler.lerArquivo_e_armazenar(arrayA, ARQUIVO_1K);
+                        ler.lerArquivo_e_armazenar(arrayB, str);
+                    }else{
+                        System.out.println("\nArquivo não encontrado");
+                    }
+
+                    MenuAcoes(arrayA,arrayB,scan);
                     break;
                 case 9:
                     System.out.println("\n SAINDO...");
@@ -33,58 +47,15 @@ public class Main {
         scan.close();
     }
 
-    private static void MenuSelecaoTipo(Scanner scanner){
-        boolean rodando =true;
-        while(rodando){
-            System.out.print("\n***Menu de Seleção***\n");
-            System.out.print("\nDefina o tipo da estrutura selecionada\n1 - Inteiros\n2 - String/caractere\n9 - SAIR\n");
-            int opcao = scanner.nextInt();
-            String str;
-            switch (opcao) {
-                case 1:
-                    
-                    break;
-                case 2:
-                    //inicialização das bombas
-                    ArrayList<String> arrayA = new ArrayList<>();
-                    ArrayList<String> arrayB = new ArrayList<>();
-
-                    Leitura ler = new Leitura();
-
-                    str = TamanhoArquivoString(scanner);
-
-                    if(str !=null && !str.isEmpty()){
-                        ler.lerArquivo_e_armazenar(arrayA, ARQUIVO_STRING_1K);
-                        ler.lerArquivo_e_armazenar(arrayB, str);
-                    }else{
-                        System.out.println("\nArquivo não encontrado");
-                    }
-
-                    MenuAcoes(arrayA,arrayB,scanner);
-
-                    break;
-
-                case 9: 
-                    System.out.println("\nVoltando...");
-                    rodando = false;
-                    break;
-
-                default:
-                System.out.println("\nOpcao Invalida");
-                    break;
-            
-            }
-        }
-    }
 
     private static String TamanhoArquivoString(Scanner scanner){
-        System.out.print("\nSelecione o arquivo que deseja ler\n1 - 'nomes_aleatorios_1K.txt'(pequeno)\n2 - 'nomes_aleatorios_100K.txt'(medio)\n3 - 'nomes_aleatorios_1M.txt'(grande)\n9 - VOLTAR\n");
+        System.out.print("\nSelecione o arquivo que deseja ler\n1 - '1K_inteiros.txt'(pequeno)\n2 - '100K_inteiros.txt'(medio)\n3 - '1M_inteiros.txt'(grande)\n9 - VOLTAR\n");
         int opcao = scanner.nextInt();
 
         switch (opcao) {
-            case 1: return ARQUIVO_STRING_1K;
-            case 2: return ARQUIVO_STRING_100K;
-            case 3: return ARQUIVO_STRING_1M;
+            case 1: return ARQUIVO_1K;
+            case 2: return ARQUIVO_100K;
+            case 3: return ARQUIVO_1M;
             case 9: return "";
             default:
                 System.out.println("\nOpcao Invalida");
@@ -92,32 +63,37 @@ public class Main {
         }
     }
 
-    private static void MenuAcoes(ArrayList<String> A,ArrayList<String> B,Scanner scanner){
+    private static void MenuAcoes(ArrayList<Integer> A,ArrayList<Integer> B,Scanner scanner){
         Controller funcoes = new Controller();
         boolean rodando = true;
         while(rodando){
             System.out.print("\n***Menu de ações***\n");
-            System.out.print("\nO que deseja fazer:\n1 - Buscar os elementos de A que estao em B (gera um arquivo txt)\n2 - Inserir em B, os elementos de A que não estao em B\n3 - Remover os elementos de A que estao em B\n");
-            System.out.print("\nFuncoes adicionais\n4 - Gerar arquivo txt com a uniao A com B\n5 - gerar arquivo txt com a intersecao A com B\n 9 - MenuPrincipal\n");
+            System.out.print("\nO que deseja fazer:\n1 - Buscar os elementos de A que estao em B (gera um arquivo txt)\n2 - Inserir em B, os elementos de A que não estao em B\n3 - Remover os elementos de A que estao em B(Nao gera um txt nem modifica os ja criados)\n");
+            System.out.print("\nFuncoes adicionais\n4 - gerar arquivo txt com a Uniao de A com B(elementos de A que nao estao em B)\n");
             System.out.println("9 - Voltar");
             int opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
-                    
+                    funcoes.Intersecao_A_B(A, B);
+                    System.out.println("\nArquivo txt gerado com sucesso");
                     break;
                 case 2:
-
+                    funcoes.Add_B_Uniao_A_B(A, B);
                     break;
 
                 case 3:
-
+                    boolean verifica;
+                    verifica =funcoes.Remove_elem_de_A_presentes_em_B(A, B);
+                    if(verifica){
+                        System.out.println("\nRemovido de A, os elementos que estavam em B");
+                    }
+                    else{
+                        System.out.println("\nFalha na remoção, tente novamente mais tarde.");
+                    }
                     break;
                 case 4:
                     funcoes.Uniao_A_B(A, B);
-                    System.out.println("\nArquivo txt gerado com sucesso");
-                    break;
-                case 5:
-
+                    System.out.println("\n Arquivo contendo a unicao de A com B gerado");
                     break;
                 case 9:
                     System.out.println("\nVoltando ... ");
