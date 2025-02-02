@@ -28,7 +28,7 @@ public class HashTentativaLinear<Key, Value> { // key e value são generics, tip
 		int x =0;
 		int i=0;
 		for (i=0;i<str.length();i++){
-			x = (73 * x) + str.charAt(i);
+			x = (37 * x) + str.charAt(i);
 		}
 		return Math.abs(x) % M;
 
