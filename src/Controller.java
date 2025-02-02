@@ -63,14 +63,12 @@ public class Controller {
         int totalComparacoes=0;
         B.resetComparacoes();
         for(int x:A){
-            B.resetComparacoes();//para resetar o numero de comparacoes la na funcao insert a cada elemento novo
             if(B.find(x)==false){  
                 B.insert(x);
-                totalComparacoes+=B.getComparacoes();
             }
-            totalComparacoes+=B.getComparacoesFind();
         }
-        System.out.println("Total de comparacoes na funcao aa_B_Uniao_A_B: "+totalComparacoes);
+        totalComparacoes+=B.getComparacoes();
+        System.out.println("Total de comparacoes na funcao add_B_Uniao_A_B: "+totalComparacoes);
     }
 
     //método para remover os elementos de A que estão presentes em B;
@@ -156,13 +154,13 @@ public class Controller {
         B.resetComparacoes();
         totalComparacoes = 0;
         for(int x:A){
-            B.resetComparacoes();
             if(B.find(x)==false){
                 B.insert(x);
-                totalComparacoes+=B.getComparacoes();
+                
             }
-            totalComparacoes+=B.getComparacoesFindRB();
+            //totalComparacoes+=B.getComparacoesFindRB();
         }
+        totalComparacoes+=B.getComparacoes();
         System.out.println("Total de comparacoes na funcao aa_B_Uniao_A_B: "+totalComparacoes);
     }
 
@@ -200,12 +198,15 @@ public class Controller {
         boolean append = false;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
         append=true;
-        
+        totalComparacoes=0;
+        B.resetComparacoes();
         for(int x:A){
             if(B.contains(x)){
                 escritor.ecrever_no_arquivo("Intersecao_A_B.txt", x,append);
             }
         }
+        totalComparacoes = B.getComparacoes();
+        System.out.println("Total de comparacoes na funcao Intersecao_A_B: "+totalComparacoes);
     }
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
@@ -220,12 +221,16 @@ public class Controller {
         boolean append = false;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
         append = true;
+        int comparacao =0;
+        B.resetComparacoes();
         for(int x:A){
             if(B.contains(x)==false){
                 //escrever em um arquivo
                 escritor.ecrever_no_arquivo("Uniao_A_B.txt", x,append);
             }
         }
+        comparacao+=B.getComparacoes();
+        System.out.println("Total de comparacoes na funcao Uniao_A_B: "+comparacao);
     }
     /**
      * Adiciona em B os elementos de A que nao estavam em B
@@ -235,11 +240,15 @@ public class Controller {
      */
     //cobrado da lista
     public void Add_B_Uniao_A_B(ArrayList<Integer> A,HashTentativaLinear<Integer,Integer> B){
+        int comparacao=0;
+        B.resetComparacoes();
         for(int x:A){
             if(B.contains(x)==false){
                 B.put(x, x);
             }
         }
+        comparacao+=B.getComparacoes();
+        System.out.println("\nTotal de comparacoes na funcao add_B_Uniao_A_B: "+comparacao);
     }
 
     /**

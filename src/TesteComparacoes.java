@@ -86,7 +86,19 @@ public class TesteComparacoes {
         System.out.println("HashLinear: "+comparacaoBusca);
 
         
-    
+        System.out.println("\n***Total Comparacoes Funcoes Intersecao***");
+
+        funcoes.Intersecao_A_B(conjuntoA, avl);
+        funcoes.Intersecao_A_B(conjuntoA, rb);
+        funcoes.Intersecao_A_B(conjuntoA, hl);
+
+
+        System.out.println("\n***Total Comparacoes Funcoes Adicionar em B os elementos de A que nao estao em B***");
+
+        funcoes.Add_B_Uniao_A_B(conjuntoA, avl);
+        funcoes.Add_B_Uniao_A_B(conjuntoA, rb);
+        funcoes.Add_B_Uniao_A_B(conjuntoA, hl);
+
     }
 
     
