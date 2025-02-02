@@ -1,7 +1,12 @@
 package TreeAVL;
 import Interface.BalancedTree;
 
+
 public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
+	//para contar o numero de comparacoes no meu Find
+	private int comparacoesFind=0;
+
+
 	private NoAVL<T> root;
 	
 	public ArvoreAVL(){
@@ -173,19 +178,48 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
         printPosOrder(root);
     }
 
-	private boolean find(NoAVL<T> t,T node){
-		if(t!=null){
-			if(node.compareTo(t.element)==0){
-				return true;
+	@Override
+	public boolean find(T node){
+		NoAVL<T> temp = root;
+		comparacoesFind=0;
+		while(temp!=null){
+			comparacoesFind++;
+			if(node.compareTo(temp.element)<0){
+				temp = temp.left;
 			}
-			if(node.compareTo(t.element)<0){
-				return find(t.left,node);
+			else if(node.compareTo(temp.element)>0){
+				temp = temp.right;
 			}
 			else{
-				return find(t.right,node);
+				return true;
 			}
 		}
 		return false;
+	}
+
+
+	/*
+	private boolean find(NoAVL<T> t,T node){
+		if(t!=null){
+			comparacoesFind++;
+			if(node.compareTo(t.element)<0){
+				comparacoesFind++;
+				return find(t.left,node);
+			}
+			else if(node.compareTo(t.element)>0){
+				comparacoesFind++;
+				return find(t.right,node);
+			}
+			else{
+				return true;
+			}
+		}
+		return false;
+	}
+	*/
+
+	public int getComparacoesFind(){
+		return comparacoesFind;
 	}
 
 	@Override
@@ -204,10 +238,7 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 	}
 
 	//falta implementar
-	@Override
-	public boolean find(T node){
-		return find(root, node);
-	}
+	
 
 	@Override
 	public int getHeight(){

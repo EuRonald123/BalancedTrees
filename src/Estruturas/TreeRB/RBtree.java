@@ -2,10 +2,8 @@ package TreeRB;
 import Interface.BalancedTree;
 import TreeRB.NodeRB.Color;
 
-
-
-
 public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
+    private int comparacoesFindRB;
 
     private final NodeRB<T> nil = new NodeRB<>(null);
 
@@ -262,25 +260,23 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
 
     
     private NodeRB<T> findNode(T key){
+        comparacoesFindRB=0;
 		NodeRB<T> temp = root;
-        while (true) {
+        while (temp!=nil){
+            comparacoesFindRB++;
             if (key.compareTo(temp.element)<0) { 
-                if (temp.left == nil) { 
-                    return null;
-                } else { 
-                    temp = temp.left;
-                }
+                temp = temp.left;
             }else if (key.compareTo(temp.element)==0) { 
                 return temp; 
             } else { 
-                if (temp.right == nil) { 
-                    return null;
-                } else { 
-                    temp = temp.right;
-                }
+                temp = temp.right;
             }
         }
+        return null;
 	}
+    public int getComparacoesFindRB(){
+        return comparacoesFindRB;
+    }
 
     /**
      * Funcao que recebe um no e imprime em ordem simetrica
@@ -344,10 +340,19 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
 
     @Override
     public boolean remove(T element){
-        if(remove(element)){
+        NodeRB<T> nodeBackup = new NodeRB<>(element);
+        nodeBackup = findNode(element);
+        if(nodeBackup == nil){
+            System.out.println("\n*Elemento não enconrado*\n");
+            return false;
+        }
+        if(RBRemove(nodeBackup)){
             return true;
         }
-        return false;
+        else{
+            System.out.println("\n*Falha na remocao*\n");
+            return false;
+        }
     }
     
     @Override

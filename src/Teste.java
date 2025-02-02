@@ -46,7 +46,10 @@ public class Teste {
         medirTempo(()->funcoes.Intersecao_A_B(conjuntoA, avl),"Intercesao_A_B");
         medirTempo(()->funcoes.Uniao_A_B(conjuntoA, avl),"Uniao_A_B");
         medirTempo(()->funcoes.Remove_elem_de_A_presentes_em_B(conjuntoA, avl),"Remove_elem...");
-        //avl.printInOrder();
+        //medirTempo(()->funcoes.Add_B_Uniao_A_B(conjuntoA,avl),"Add_B_Uniao_A_B");
+        
+
+        
 
         
     }
@@ -55,7 +58,7 @@ public class Teste {
         funcao.run();
         long fim = System.nanoTime();
         long tempoTotal = (fim - inicio)/1_000_000;
-        System.out.println("\nTempo de execucao "+ nomeFuncao+" é: "+tempoTotal+" ms");
+        System.out.println("Tempo de execucao "+ nomeFuncao+" é: "+tempoTotal+" ms");
     }
     
 }

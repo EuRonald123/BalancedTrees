@@ -5,6 +5,7 @@ import Arquivos.*;
 import HashTable.HashTentativaLinear;
 
 public class Controller {
+    int totalComparacoes;
     Escrita escritor = new Escrita();
     /**
      * Busca os elementos de A que estao em B e gera um arquivo com o nome Intersecao_A_B.txt
@@ -15,14 +16,16 @@ public class Controller {
      */
     public void Intersecao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
         boolean append = false;
+        totalComparacoes =0;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
         append=true;
-        
         for(int x:A){
             if(B.find(x)){
                 escritor.ecrever_no_arquivo("Intersecao_A_B.txt", x,append);
             }
+            totalComparacoes += B.getComparacoesFind();
         }
+        System.out.println("\nTotalComparacoes na Intersecao AB e: "+totalComparacoes);
     }
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
@@ -35,6 +38,7 @@ public class Controller {
      */
     public void Uniao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
         boolean append = false;
+        totalComparacoes=0;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
         append = true;
         for(int x:A){
@@ -42,7 +46,9 @@ public class Controller {
                 //escrever em um arquivo
                 escritor.ecrever_no_arquivo("Uniao_A_B.txt", x,append);
             }
+            totalComparacoes+=B.getComparacoesFind();
         }
+        System.out.println("Total de comparacoes na Uniao_A_B: "+totalComparacoes);
     }
 
     //esse metodo apenas adiciona em B os elementos de A que nao estavam em B
@@ -96,6 +102,7 @@ public class Controller {
      */
     public void Intersecao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
         boolean append = false;
+        totalComparacoes=0;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
         append=true;
         
@@ -103,7 +110,9 @@ public class Controller {
             if(B.find(x)){
                 escritor.ecrever_no_arquivo("Intersecao_A_B.txt", x,append);
             }
+            totalComparacoes+=B.getComparacoesFindRB();
         }
+        System.out.println("\nTotalComparacoes na Intersecao AB e: "+totalComparacoes);
     }
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
@@ -116,6 +125,7 @@ public class Controller {
      */
     public void Uniao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
         boolean append = false;
+        totalComparacoes=0;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
         append = true;
         for(int x:A){
@@ -123,7 +133,9 @@ public class Controller {
                 //escrever em um arquivo
                 escritor.ecrever_no_arquivo("Uniao_A_B.txt", x,append);
             }
+            totalComparacoes+=B.getComparacoesFindRB();
         }
+        System.out.println("TotalCOmparacoesUniaoAB: "+totalComparacoes);
     }
 
     //esse metodo apenas adiciona em B os elementos de A que nao estavam em B
