@@ -6,8 +6,13 @@ import HashTable.HashTentativaLinear;
 
 public class Controller {
     Escrita escritor = new Escrita();
-    //busca os elementos de A que estão em B e gera um arquivo;
-    //cobrado da lista
+    /**
+     * Busca os elementos de A que estao em B e gera um arquivo com o nome Intersecao_A_B.txt
+     * @param A
+     * @param B
+     * @return arquivo Intersecao_A_B.txt 
+     * local ED2_INTERSECAO/src/
+     */
     public void Intersecao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
         boolean append = false;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
@@ -22,6 +27,12 @@ public class Controller {
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
     //bom para testes
+    /**
+     * Gera um arquivo com a Uniao de A com B, ou seja, elementos que estao em A mas não em B
+     * @param A
+     * @param B
+     * @return Arquivo Uniao_A_B.txt  local  ED2_INTERSECAO/src
+     */
     public void Uniao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
         boolean append = false;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
@@ -36,6 +47,12 @@ public class Controller {
 
     //esse metodo apenas adiciona em B os elementos de A que nao estavam em B
     //cobrado da lista
+    /**
+     * Adiciona em B os elementos de A que nao estavam em B
+     * @param A
+     * @param B
+     * @OBS Nao retorna nada e nao altera os arquivos ja existentes
+     */
     public void Add_B_Uniao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
         for(int x:A){
             if(B.find(x)==false){
@@ -46,6 +63,12 @@ public class Controller {
 
     //método para remover os elementos de A que estão presentes em B;
     //cobrado da lista
+    /**
+     * Remove elementos de A que estao em B
+     * @param A
+     * @param B
+     * @return retorna boolean e nao altera os arquivos ja existentes ou modifica eles
+     */
     public boolean Remove_elem_de_A_presentes_em_B(ArrayList<Integer> A, ArvoreAVL<Integer> B){
 
         /*essa funcao removeIF remove de um ArrayList se cumprir uma condição
@@ -64,6 +87,13 @@ public class Controller {
 
     //busca os elementos de A que estão em B e gera um arquivo;
     //cobrado da lista
+    /**
+     * Busca os elementos de A que estao em B e gera um arquivo com o nome Intersecao_A_B.txt
+     * @param A
+     * @param B
+     * @return arquivo Intersecao_A_B.txt 
+     * local ED2_INTERSECAO/src/
+     */
     public void Intersecao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
         boolean append = false;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
@@ -78,6 +108,12 @@ public class Controller {
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
     //bom para testes
+    /**
+     * Gera um arquivo com a Uniao de A com B, ou seja, elementos que estao em A mas não em B
+     * @param A
+     * @param B
+     * @return Arquivo Uniao_A_B.txt  local  ED2_INTERSECAO/src
+     */
     public void Uniao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
         boolean append = false;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
@@ -92,6 +128,12 @@ public class Controller {
 
     //esse metodo apenas adiciona em B os elementos de A que nao estavam em B
     //cobrado da lista
+    /**
+     * Adiciona em B os elementos de A que nao estavam em B
+     * @param A
+     * @param B
+     * Nao retorna nada e nao altera os arquivos ja existentes
+     */
     public void Add_B_Uniao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
         for(int x:A){
             if(B.find(x)==false){
@@ -102,6 +144,12 @@ public class Controller {
 
     //método para remover os elementos de A que estão presentes em B;
     //cobrado da lista
+    /**
+     * Remove elementos de A que estao em B
+     * @param A
+     * @param B
+     * @return retorna boolean e nao altera os arquivos ja existentes ou modifica eles
+     */
     public boolean Remove_elem_de_A_presentes_em_B(ArrayList<Integer> A, RBtree<Integer> B){
         /*essa funcao removeIF remove de um ArrayList se cumprir uma condição
         Nesse caso para cada elemento de A se B.find(elementoDeA)==true então remove
@@ -117,6 +165,13 @@ public class Controller {
 
     //busca os elementos de A que estão em B e gera um arquivo;
     //cobrado da lista
+    /**
+     * Busca os elementos de A que estao em B e gera um arquivo com o nome Intersecao_A_B.txt
+     * @param A
+     * @param B
+     * @return arquivo Intersecao_A_B.txt 
+     * local ED2_INTERSECAO/src/
+     */
     public void Intersecao_A_B(ArrayList<Integer> A,HashTentativaLinear<Integer,Integer> B){
         boolean append = false;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
@@ -131,6 +186,12 @@ public class Controller {
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
     //bom para testes
+    /**
+     * Gera um arquivo com a Uniao de A com B, ou seja, elementos que estao em A mas não em B
+     * @param A
+     * @param B
+     * @return Arquivo Uniao_A_B.txt  local  ED2_INTERSECAO/src
+     */
     public void Uniao_A_B(ArrayList<Integer> A,HashTentativaLinear<Integer,Integer> B){
         boolean append = false;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
@@ -143,9 +204,10 @@ public class Controller {
         }
     }
     /**
-     * esse metodo apenas adiciona em B os elementos de A que nao estavam em B
+     * Adiciona em B os elementos de A que nao estavam em B
      * @param A
      * @param B
+     * Nao retorna nada e nao altera os arquivos ja existentes
      */
     //cobrado da lista
     public void Add_B_Uniao_A_B(ArrayList<Integer> A,HashTentativaLinear<Integer,Integer> B){
@@ -176,6 +238,13 @@ public class Controller {
     /*********************************************************************************************/
     //busca os elementos de A que estão em B e gera um arquivo;
     //cobrado da lista
+    /**
+     * Busca os elementos de A que estao em B e gera um arquivo com o nome Intersecao_A_B.txt
+     * @param A
+     * @param B
+     * @return arquivo Intersecao_A_B.txt 
+     * local ED2_INTERSECAO/src/
+     */
     public void Intersecao_A_B(ArrayList<Integer> A,ArrayList<Integer> B){
         boolean append = false;
         escritor.escrever("Intersecao_A_B.txt", "***Elementos de A que estao em B***", append);
@@ -190,6 +259,12 @@ public class Controller {
 
     //esse metodo gera um arquivo com os elementos de A que nao estao em B
     //bom para testes
+    /**
+     * Gera um arquivo com a Uniao de A com B, ou seja, elementos que estao em A mas não em B
+     * @param A
+     * @param B
+     * @return Arquivo Uniao_A_B.txt  local  ED2_INTERSECAO/src
+     */
     public void Uniao_A_B(ArrayList<Integer> A,ArrayList<Integer> B){
         boolean append = false;
         escritor.escrever("Uniao_A_B.txt", "***Elementos de A que nao estao em B***", append);
@@ -204,6 +279,12 @@ public class Controller {
 
     //esse metodo apenas adiciona em B os elementos de A que nao estavam em B
     //cobrado da lista
+    /**
+     * Adiciona em B os elementos de A que nao estavam em B
+     * @param A
+     * @param B
+     * Nao retorna nada e nao altera os arquivos ja existentes
+     */
     public void Add_B_Uniao_A_B(ArrayList<Integer> A,ArrayList<Integer> B){
         for(int x:A){
             if(B.contains(x)==false){
@@ -214,6 +295,12 @@ public class Controller {
 
     //método para remover os elementos de A que estão presentes em B;
     //cobrado da lista
+    /**
+     * Remove elementos de A que estao em B
+     * @param A
+     * @param B
+     * @return retorna boolean e nao altera os arquivos ja existentes ou modifica eles
+     */
     public boolean Remove_elem_de_A_presentes_em_B(ArrayList<Integer> A, ArrayList<Integer> B){
 
         /*essa funcao removeIF remove de um ArrayList se cumprir uma condição

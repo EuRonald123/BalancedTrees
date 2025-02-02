@@ -1,3 +1,6 @@
+/*Leia o README antes de funçar o código */
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import Arquivos.*;
@@ -6,12 +9,10 @@ import TreeAVL.ArvoreAVL;
 import TreeRB.RBtree;
 
 
-public class Main <T> {
+public class Main{
     private static final String ARQUIVO_1K = "1K_inteiros.txt";
     private static final String ARQUIVO_100K = "100K_inteiros.txt";
     private static final String ARQUIVO_1M = "1M_inteiros.txt";
-
-
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         boolean rodando =true;
@@ -27,9 +28,6 @@ public class Main <T> {
             switch (opcao) {
                 case 1:
                     ArrayList<Integer> arrayB = new ArrayList<>();
-                    
-
-                    
 
                     str = TamanhoArquivoString(scan);
 

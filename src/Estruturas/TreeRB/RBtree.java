@@ -344,19 +344,10 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
 
     @Override
     public boolean remove(T element){
-        NodeRB<T> nodeBackup = new NodeRB<>(element);
-        nodeBackup = findNode(element);
-        if(nodeBackup == null){
-            System.out.println("\n*Elemento não enconrado*\n");
-            return false;
-        }
-        if(RBRemove(nodeBackup)){
+        if(remove(element)){
             return true;
         }
-        else{
-            System.out.println("\n*Falha na remocao*\n");
-            return false;
-        }
+        return false;
     }
     
     @Override

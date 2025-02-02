@@ -61,14 +61,18 @@ public class HashTentativaLinear<Key, Value> { // key e value são generics, tip
 		M = t.M;
 		
 	}
-	
-	 public boolean contains(Key key) {
-	        if (key == null) {
-	            throw new IllegalArgumentException("Argument to contains() cannot be null");
-	        }
+	/**
+	 * Funcao para verificar se o elemento esta na tabela
+	 * @param key
+	 * @return
+	 */
+	public boolean contains(Key key) {
+		if (key == null) {
+			throw new IllegalArgumentException("Argument to contains() cannot be null");
+		}
 
-	        return get(key) != null;
-	 }
+		return get(key) != null;
+	}
 
 	 
 	
