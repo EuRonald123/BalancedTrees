@@ -10,13 +10,10 @@ import java.util.ArrayList;
 import HashTable.HashTentativaLinear;
 
 public class Leitura {
+    String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/DataSet/";
 
     //ler do arquivo e armazenar n treeAVL
     public void lerArquivo_e_armazenar(ArvoreAVL<Integer> avlTree,String nomeArquivo){
-
-
-
-        String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
 
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
             String linha;
@@ -43,9 +40,6 @@ public class Leitura {
     //ler do arquivo e armazenar na rubro negra
     public void lerArquivo_e_armazenar(RBtree<Integer> RBtree,String nomeArquivo){
 
-
-        String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
-
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
             String linha;
             //para pular a primeira linha
@@ -69,8 +63,6 @@ public class Leitura {
     //ler do arquivo e armazenar na rubro negra
     public void lerArquivo_e_armazenar(HashTentativaLinear<Integer,Integer> hashLinear ,String nomeArquivo){
 
-
-        String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
 
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
             String linha;
@@ -99,7 +91,7 @@ public class Leitura {
     public void lerArquivo_e_armazenar(ArrayList<Integer> array,String nomeArquivo){
 
 
-        String caminhoArquivo = "ED2_INTERSECAO/src/Arquivos/";//caminho do arquivo escolhido
+        //caminho do arquivo escolhido
 
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo+nomeArquivo))){
             String linha;
