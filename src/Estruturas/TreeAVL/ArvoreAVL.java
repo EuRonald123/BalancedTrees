@@ -5,6 +5,7 @@ import Interface.BalancedTree;
 public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 	//para contar o numero de comparacoes no meu Find
 	private int comparacoesFind=0;
+	private int comparacoes = 0;
 
 
 	private NoAVL<T> root;
@@ -65,17 +66,26 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 		return simpleRightRotation(node);
 	}
 	
+	/**
+	 * Fumcao para fazer o balanceamento da arvore
+	 * @param t
+	 * @return
+	 */
 	private NoAVL<T> balanceTree(NoAVL<T> t){
         updateHeight(t);
         int balance = balanceFactor(t);
         
+		comparacoes++; //ou cai no if ou cai no elseIf
+
         if(balance < -1){
+			comparacoes++;
             if(balanceFactor(t.left)>0){
                 t = doubleRightRotation(t);
             }else{
                 t = simpleRightRotation(t);
             }
         }else if(balance > 1){
+			comparacoes++;
             if(balanceFactor(t.right)<0){
                 t = doubleLeftRotation(t);
             }else{
@@ -86,17 +96,23 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
     }
 
 	//insert avl
+	//essa funcao era apenas um if else if e else if mas para comparacoes e testes tive que mudar
 	private NoAVL<T> insert(NoAVL<T> t,T x) {
+		comparacoes++;
 		if(t == null) {
 			return new NoAVL<>(x);
 		}
-		
-		else if(x.compareTo(t.element)<0) {
+
+		comparacoes++;
+		if(x.compareTo(t.element)<0) {
 			t.left = insert(t.left,x);
 		}
 		
-		else if(x.compareTo(t.element)>0) {
-			t.right = insert(t.right,x);
+		else {
+			comparacoes++;
+			if(x.compareTo(t.element)>0) {
+				t.right = insert(t.right,x);
+			}
 		}
 
 		return balanceTree(t);
@@ -104,6 +120,7 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 	
 	private NoAVL<T> findMin(NoAVL<T> node){
 		while(node.left != null) {
+			comparacoes++;
 			node = node.left;
 		}
 		return node;
@@ -188,9 +205,11 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 				temp = temp.left;
 			}
 			else if(node.compareTo(temp.element)>0){
+				comparacoesFind++;
 				temp = temp.right;
 			}
 			else{
+				comparacoesFind++;//teve que ficar pois o minimo de comparacoes eh 2 e o max eh 3
 				return true;
 			}
 		}
@@ -218,9 +237,6 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 	}
 	*/
 
-	public int getComparacoesFind(){
-		return comparacoesFind;
-	}
 
 	@Override
 	public void insert(T x) {
@@ -248,6 +264,23 @@ public class ArvoreAVL<T extends Comparable<T>> implements BalancedTree <T>{
 	@Override
 	public void printInOrder() {
 		printInOrder(root);
+	}
+
+
+	/**
+	 * para comparacoes criei essas funcoes aqui
+	 */
+
+	public int getComparacoesFind(){
+		return comparacoesFind;
+	}
+
+	public int getComparacoes(){
+		return comparacoes;
+	}
+
+	public void resetComparacoes(){
+		comparacoes=0;
 	}
 	
 }

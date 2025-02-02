@@ -96,7 +96,7 @@ public class HashTentativaLinear<Key, Value> { // key e value são generics, tip
                 return;
             }
             j++;
-            i = hashLinear(hash(key), j); // Próximo índice
+            i = hashLinear(i, j); // Próximo índice
         }
 
         // Insere a chave e o valor
@@ -156,7 +156,7 @@ public class HashTentativaLinear<Key, Value> { // key e value são generics, tip
                 return vals[i]; // Retorna o valor se a chave for encontrada
             }
             j++;
-            i = hashLinear(hash(key), j); // Próximo índice
+            i = hashLinear(i, j); // Próximo índice
         }
 
         return null; // Chave não encontrada

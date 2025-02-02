@@ -60,11 +60,17 @@ public class Controller {
      * @OBS Nao retorna nada e nao altera os arquivos ja existentes
      */
     public void Add_B_Uniao_A_B(ArrayList<Integer> A,ArvoreAVL<Integer> B){
+        int totalComparacoes=0;
+        B.resetComparacoes();
         for(int x:A){
-            if(B.find(x)==false){
+            B.resetComparacoes();//para resetar o numero de comparacoes la na funcao insert a cada elemento novo
+            if(B.find(x)==false){  
                 B.insert(x);
+                totalComparacoes+=B.getComparacoes();
             }
+            totalComparacoes+=B.getComparacoesFind();
         }
+        System.out.println("Total de comparacoes na funcao aa_B_Uniao_A_B: "+totalComparacoes);
     }
 
     //método para remover os elementos de A que estão presentes em B;
@@ -147,11 +153,17 @@ public class Controller {
      * Nao retorna nada e nao altera os arquivos ja existentes
      */
     public void Add_B_Uniao_A_B(ArrayList<Integer> A,RBtree<Integer> B){
+        B.resetComparacoes();
+        totalComparacoes = 0;
         for(int x:A){
+            B.resetComparacoes();
             if(B.find(x)==false){
                 B.insert(x);
+                totalComparacoes+=B.getComparacoes();
             }
+            totalComparacoes+=B.getComparacoesFindRB();
         }
+        System.out.println("Total de comparacoes na funcao aa_B_Uniao_A_B: "+totalComparacoes);
     }
 
     //método para remover os elementos de A que estão presentes em B;

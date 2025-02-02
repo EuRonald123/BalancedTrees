@@ -4,6 +4,7 @@ import TreeRB.NodeRB.Color;
 
 public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
     private int comparacoesFindRB;
+    private int comparacoes;
 
     private final NodeRB<T> nil = new NodeRB<>(null);
 
@@ -63,11 +64,13 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
         NodeRB<T> x = root;
         while(x != nil){
             y = x;
+            comparacoes++;
             if(node.element.compareTo(x.element)==0){
                 //elemento ja existe, nao insere novamente
                 return;
             }
-            else if(node.element.compareTo(x.element)<0){
+            comparacoes++;
+            if(node.element.compareTo(x.element)<0){
                 x = x.left;
             }
             else{
@@ -76,16 +79,22 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
         }
         //quando sair do while é pq chegou na folha
         node.parent = y;
+        comparacoes++;
         if(y == nil){
             root = node;
         }
         //o problema estava aqui, ele tava comparando com x mas x é folha, tem que comparar com y que é pai de x;
-        else if(node.element.compareTo(y.element)<0){
-            y.left = node;
+        //tive que fazer isso para poder contabilizar as comparacoes de maneira correta, era apenas um else if
+        else{ 
+            comparacoes++;
+            if(node.element.compareTo(y.element)<0){
+                y.left = node;
+            }
+            else{
+                y.right = node;
+            }
         }
-        else{
-            y.right = node;
-        }
+        
         node.left = nil;
         node.right = nil;
         node.color=Color.RED;
@@ -94,9 +103,11 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
 
     private void RBInserFixUp(NodeRB<T> node){
         NodeRB<T> y =nil;
-        while (node.parent.color == Color.RED){ 
+        while (node.parent.color == Color.RED){
+            comparacoes++; 
             if (node.parent == node.parent.parent.left){
                 y = node.parent.parent.right;
+                comparacoes++;
                 if(y.color == Color.RED){
                     node.parent.color = Color.BLACK;
                     y.color = Color.BLACK;
@@ -104,10 +115,11 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
                     node = node.parent.parent;
                 }
                 else{
-                     if(node == node.parent.right){
-                    node = node.parent;
-                    simpleLeftRotation(node);
-                     }
+                    comparacoes++;
+                    if(node == node.parent.right){
+                        node = node.parent;
+                        simpleLeftRotation(node);
+                    }
                 
                     node.parent.color = Color.BLACK;
                     node.parent.parent.color = Color.RED;
@@ -116,6 +128,7 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
             }
             else{
                 y = node.parent.parent.left;
+                comparacoes++;
                 if(y.color == Color.RED){
                     node.parent.color = Color.BLACK;
                     y.color = Color.BLACK;
@@ -123,6 +136,7 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
                     node = node.parent.parent;
                 }
                 else {
+                    comparacoes++;
                     if(node == node.parent.left){
                         node = node.parent;
                         simpleRightRotation(node);
@@ -267,16 +281,16 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
             if (key.compareTo(temp.element)<0) { 
                 temp = temp.left;
             }else if (key.compareTo(temp.element)==0) { 
+                comparacoesFindRB++;
                 return temp; 
-            } else { 
+            } else {
+                comparacoesFindRB++;
                 temp = temp.right;
             }
         }
         return null;
 	}
-    public int getComparacoesFindRB(){
-        return comparacoesFindRB;
-    }
+    
 
     /**
      * Funcao que recebe um no e imprime em ordem simetrica
@@ -373,4 +387,20 @@ public class RBtree<T extends Comparable<T>> implements BalancedTree<T>{
     public void printInOrder(){
         printInOrder(root);
     }
+
+    /**
+	 * para comparacoes criei essas funcoes aqui
+	 */
+
+    public int getComparacoesFindRB(){
+        return comparacoesFindRB;
+    }
+    
+	public int getComparacoes(){
+		return comparacoes;
+	}
+
+	public void resetComparacoes(){
+		comparacoes=0;
+	}
 }
