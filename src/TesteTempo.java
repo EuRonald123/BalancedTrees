@@ -15,7 +15,7 @@ public class TesteTempo {
         ArrayList<Integer> arr = new ArrayList<>();
         ArvoreAVL<Integer> avl = new ArvoreAVL<>();
         RBtree<Integer> rb = new RBtree<>();
-        HashTentativaLinear<Integer,Integer> hl = new HashTentativaLinear<>(500000);
+        HashTentativaLinear<Integer,Integer> hl = new HashTentativaLinear<>(500009);
         Leitura ler = new Leitura();
         Controller funcoes = new Controller();
 

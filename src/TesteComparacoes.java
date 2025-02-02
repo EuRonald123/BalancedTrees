@@ -14,7 +14,7 @@ public class TesteComparacoes {
         ArrayList<Integer> arr = new ArrayList<>();
         ArvoreAVL<Integer> avl = new ArvoreAVL<>();
         RBtree<Integer> rb = new RBtree<>();
-        HashTentativaLinear<Integer,Integer> hl = new HashTentativaLinear<>(500000);
+        HashTentativaLinear<Integer,Integer> hl = new HashTentativaLinear<>(500009);
         Leitura ler = new Leitura();
         Controller funcoes = new Controller();
 
@@ -31,12 +31,15 @@ public class TesteComparacoes {
         rb.resetComparacoes();
         ler.lerArquivo_e_armazenar(rb, ARQUIVO_1M);
         int comparacoesInsercaoRB = rb.getComparacoes();
+        hl.resetComparacoes();
         ler.lerArquivo_e_armazenar(hl, ARQUIVO_1M);
+        int comparacoesInsercaoHashLinear = hl.getComparacoes();
     
         System.out.println("\n***Total Comparacoes insercao***");
 
         System.out.println("AVL: "+comparacoesInsercaoAVL);
         System.out.println("RubroNegra: "+comparacoesInsercaoRB);
+        System.out.println("HashTableLinear: "+comparacoesInsercaoHashLinear);
 
 
 
@@ -54,12 +57,17 @@ public class TesteComparacoes {
         rb.insert(x);
         comparacoesInsercaoRB=rb.getComparacoes();
         System.out.println("RB: "+comparacoesInsercaoRB);
+
+        hl.resetComparacoes();
+        hl.put(x,x);
+        comparacoesInsercaoHashLinear=hl.getComparacoes();
+        System.out.println("HashLinear: "+comparacoesInsercaoHashLinear);
     
 
 
         System.out.println("\n***Total Comparacoes Busca elemento X***");
 
-        x=23219;
+        x=858319;
 
         int comparacaoBusca;
         //avl
@@ -71,6 +79,12 @@ public class TesteComparacoes {
         rb.find(x);
         comparacaoBusca =  rb.getComparacoesFindRB();
         System.out.println("RB: "+comparacaoBusca);
+
+        hl.resetComparacoes();
+        hl.contains(x);
+        comparacaoBusca = hl.getComparacoes();
+        System.out.println("HashLinear: "+comparacaoBusca);
+
         
     
     }
