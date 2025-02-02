@@ -45,7 +45,7 @@ public class TesteTempo {
 
 
         System.out.println("\n***Tempo de Insercoes de um elemento X em cada estrutura***");
-        int x = 123456;
+        int x = 12345672;
         //inserções individuais
 
         medirTempo(()->arr.add(x),"Insercao arr");
